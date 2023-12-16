@@ -3,7 +3,7 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                checkout([$class: 'GitSCM', branches: [[name: '*/main']], userRemoteConfigs: [[url: 'https://github.com/your-username/your-app-repo.git']]])
+                checkout([$class: 'GitSCM', branches: [[name: '*/main']], userRemoteConfigs: [[url: 'https://github.com/beeru405/devops-pipeline.git']]])
             }
         }
         stage('Build') {
@@ -14,9 +14,9 @@ pipeline {
         stage('Build Docker Image') {
             steps {
                 script {
-                    docker.build("your-docker-image:latest")
+                    docker.build("devops-pipeline:latest")
                     docker.withRegistry('https://registry.example.com', 'credentials-id') {
-                        docker.image("your-docker-image:latest").push()
+                        docker.image("devops-pipeline:latest").push()
                     }
                 }
             }
